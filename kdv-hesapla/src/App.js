@@ -54,7 +54,7 @@ const App = () => {
         <div className="space-y-4 text-center">
           <label className="flex flex-col">
             <span className="my-3 font-bold text-gray-700 ">
-              Alışveriş Tutarı (TL):
+              Alışveriş Tutarı (₺):
             </span>
             <input
               type="text"
