@@ -50,7 +50,7 @@ const App = () => {
             onClick={handleCalculateInstallments}
             className="flex px-4 py-2 mx-auto mt-3 text-center text-white bg-indigo-600 rounded-md hover:bg-indigo-700"
           >
-            KDV Hesapla
+            Hesapla
           </button>
         </div>
         {installments.length > 0 && (
