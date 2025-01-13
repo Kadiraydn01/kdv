@@ -83,10 +83,10 @@ const App = () => {
                     Taksit Sayısı
                   </th>
                   <th className="px-4 py-2 border border-gray-300">
-                    Toplam Tutar
+                    Aylık Taksit
                   </th>
                   <th className="px-4 py-2 border border-gray-300">
-                    Aylık Taksit
+                    Toplam Tutar
                   </th>
                 </tr>
               </thead>
@@ -97,10 +97,10 @@ const App = () => {
                       {month === "1" ? "Peşin" : `${month} Ay`}
                     </td>
                     <td className="px-4 py-2 border border-gray-300">
-                      {formatCurrency(totalAmount)}
+                      {formatCurrency(monthlyPayment)} ₺
                     </td>
                     <td className="px-4 py-2 border border-gray-300">
-                      {formatCurrency(monthlyPayment)}
+                      {formatCurrency(totalAmount)} ₺
                     </td>
                   </tr>
                 ))}
