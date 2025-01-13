@@ -2,11 +2,29 @@ import React, { useState } from "react";
 import "./App.css";
 
 const App = () => {
-  const [amount, setAmount] = useState("");
-  const [installments, setInstallments] = useState([]);
+  const [amount, setAmount] = useState(""); // Alışveriş tutarını tutan state
+  const [installments, setInstallments] = useState([]); // Taksit hesaplamalarını tutan state
 
+  // Alışveriş tutarını sayısal formatta tutmak için fonksiyon
+  const handleAmountChange = (e) => {
+    const value = e.target.value.replace(/[^\d,]/g, "").replace(",", ".");
+    setAmount(value);
+  };
+
+  // Girdiği değeri yerel para birimi formatında gösteren fonksiyon
+  const formatCurrency = (value) => {
+    if (!value) return "";
+    const numericValue = parseFloat(value.replace(",", "."));
+    return numericValue.toLocaleString("tr-TR", {
+      style: "decimal",
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    });
+  };
+
+  // Taksit hesaplamalarını yapan fonksiyon
   const handleCalculateInstallments = () => {
-    if (!amount) return;
+    if (!amount || isNaN(amount)) return;
 
     const calculatedInstallments = Object.keys(installmentRates).map(
       (month) => {
@@ -40,8 +58,8 @@ const App = () => {
             </span>
             <input
               type="text"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
+              value={formatCurrency(amount)}
+              onChange={handleAmountChange}
               placeholder="Tutarı giriniz"
               className="flex px-3 py-2 mt-2 text-center bg-white border border-gray-300 rounded-md shadow-sm hover:bg-slate-100 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
             />
@@ -79,10 +97,10 @@ const App = () => {
                       {month === "1" ? "Peşin" : `${month} Ay`}
                     </td>
                     <td className="px-4 py-2 border border-gray-300">
-                      {totalAmount}
+                      {formatCurrency(totalAmount)}
                     </td>
                     <td className="px-4 py-2 border border-gray-300">
-                      {monthlyPayment}
+                      {formatCurrency(monthlyPayment)}
                     </td>
                   </tr>
                 ))}
@@ -95,6 +113,7 @@ const App = () => {
   );
 };
 
+// Taksit hesaplama oranları
 const installmentRates = {
   1: 1.0372,
   2: 1.0783,
