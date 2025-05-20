@@ -94,7 +94,7 @@ const App = () => {
                 {installments.map(({ month, totalAmount, monthlyPayment }) => (
                   <tr key={month} className="hover:bg-gray-100">
                     <td className="px-4 py-2 border border-gray-300">
-                      {month === "1" ? "Peşin" : `${month} Ay`}
+                      {month === "1" ? "Tek Çekim" : `${month} Ay`}
                     </td>
                     <td className="px-4 py-2 border border-gray-300">
                       {formatCurrency(monthlyPayment)} ₺
